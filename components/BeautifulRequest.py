@@ -2,6 +2,8 @@
 Cette classe automatise les requêtes et permet de récupérer le
 code HTML.
 Elle récupère également toutes les URLS des catégories.
+Permet de faire une requête pour obtenir le contenu d'une
+image.
 '''
 
 import requests
@@ -38,6 +40,14 @@ class BeautifulRequest:
             raise SystemExit(e)
 
         return BeautifulSoup(response.text, 'html.parser')
+
+    def request_image(self, url):
+        try:
+            response = requests.get(url).content
+        except requests.exceptions.RequestException as e:
+            raise SystemExit(e)
+        return response
+
 
 
 # Permet de tester la classe.

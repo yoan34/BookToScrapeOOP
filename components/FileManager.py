@@ -21,8 +21,9 @@ class FileManager:
         'image_url'
         ]
 
-    def __init__(self, name):
-        self.name = 'csv/books_' + name + '.csv'
+    def __init__(self, category):
+        self.category = category
+        self.name = 'csv/books_' + category + '.csv'
         self.file = None
         self.writer = None
         self._initialize()
@@ -30,14 +31,20 @@ class FileManager:
     def _initialize(self):
         if not os.path.exists('csv'):
             os.mkdir('csv')
-        
+
+        if not os.path.exists('images'):
+            os.mkdir('images')
+
+        if not os.path.exists('images/' + self.category):
+            os.mkdir('images/' + self.category)
+
         # on regarde si il n'y a pas d'erreur avec le fichier.
         try:
             with open(self.name, 'w', newline='', encoding='utf-8') as file:
                 self.file = file
 
-                # Création d'un object ou l'on peut écrire/convertir des données
-                # en csv.
+                # Création d'un object ou l'on peut écrire/convertir des
+                # données en csv.
                 self.writer = csv.writer(self.file)
 
                 # On ajoute les en-têtes en première ligne du fichier CSV.
@@ -61,7 +68,16 @@ class FileManager:
         except IOError:
             print("Problem with the file: ", self.name)
 
-# Permet de tester la class 
+    def get_image(self, response, n):
+        try:
+            with open('images/' + self.category + '/book' +
+                      str(n+1)+'.jpg',  'wb') as file:
+                file.write(response)
+        except IOError:
+            print("Problem with the file: ", self.name)
+
+
+# Permet de tester la class
 if __name__ == '__main__':
 
     file = FileManager('fiction')

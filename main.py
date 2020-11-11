@@ -40,7 +40,7 @@ for category_url in categories_urls:
         # On parcourt l'URL des livres pour récupérer le code
         # HTML et par la suite ses informations et on les
         # ajoute dans le fichier CSV.
-        for book_url in category.pages[page_url]:
+        for (m, book_url) in enumerate(category.pages[page_url]):
             html = request.get_html(book_url)
             book = Book(book_url, html)
 
@@ -48,6 +48,8 @@ for category_url in categories_urls:
             print(book, flush=True)
 
             data = book.get_data()
+            response = request.request_image(data[-1])
+            fileManager.get_image(response, n*20+m)
             fileManager.write(data)
 
     # Affiche à la console la fin de la catégorie parcouru.
