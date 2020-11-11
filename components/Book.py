@@ -54,5 +54,5 @@ class Book:
     def __str__(self):
         return '{}book: {}'.format(
             ' '*8,
-            self.title.encode('raw_unicode_escape').decode('utf-8')
+            self.title,
             )

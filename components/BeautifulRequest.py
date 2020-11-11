@@ -28,7 +28,8 @@ class BeautifulRequest:
         except Exception:
             print("The criteria are not suitable, check them on the url: {}"
                   .format(self.url))
-        return urls
+        else:
+            return urls
 
     def get_html(self, url):
 
@@ -38,8 +39,9 @@ class BeautifulRequest:
             response = requests.get(url)
         except requests.exceptions.RequestException as e:
             raise SystemExit(e)
-
-        return BeautifulSoup(response.text, 'html.parser')
+        return BeautifulSoup(response.content.decode('utf-8', 'ignore'),
+                             'html.parser',
+                             )
 
     def request_image(self, url):
         try:
@@ -47,7 +49,6 @@ class BeautifulRequest:
         except requests.exceptions.RequestException as e:
             raise SystemExit(e)
         return response
-
 
 
 # Permet de tester la classe.

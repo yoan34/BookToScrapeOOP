@@ -54,16 +54,11 @@ class FileManager:
 
     def write(self, data):
         # on regarde si il n'y a pas d'erreur avec le fichier
-        # ouvert en mode 'ajout'.
+        # ouvert en mode 'ajout' et on écrit les données dedans.
         try:
             with open(self.name, 'a', newline='', encoding='utf-8') as file:
                 self.file = file
                 self.writer = csv.writer(self.file)
-
-                # On encode et decode les données 'str' pour être sûr de
-                # bien écrire les informations
-                data = [d.encode('raw_unicode_escape')
-                        .decode('utf-8') for d in data]
                 self.writer.writerow(data)
         except IOError:
             print("Problem with the file: ", self.name)

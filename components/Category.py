@@ -62,6 +62,6 @@ class Category:
     # plus approprié.
     def __str__(self):
         title = ("\n{} category: {} --> {} page(s) {}\n"
-                 .format('-'*25,self.name, self.page, '-'*25))
+                 .format('-'*25, self.name, self.page, '-'*25))
         url = "\n{}url: {}".format(' '*3, self.url)
         return title + url
