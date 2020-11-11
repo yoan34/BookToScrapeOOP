@@ -4,7 +4,7 @@ Receptionner le projet dans un repertoire de votre choix.</br>
 <b>git clone https://github.com/yoan34/BookToScrapeOOP.git</b>
 
 Aller dedans:</br>
-<b>cd BooksToScrape/</b>
+<b>cd BookToScrapeOOP/</b>
 
 Création d'un environnement virtuel:</br>
 	<b>python -m venv env</b>
